@@ -9,14 +9,16 @@ namespace CookBook.Models
 {
     public class RecipeIngredient
     {
+        [Key]
+        public int Recipe_id { get; set; }
+        //TODO ForeignKey
         [Required]
-        public int recipe_id { get; set; }
-
+        public int IngredientId { get; set; }
+        //TODO ForeignKey
         [Required]
-        public int ingredient_id { get; set; }
-        public int measure_id { get; set; }
-        public int amount { get; set; }
+        public int MeasureId { get; set; }
+        [Required]
+        public int Amount { get; set; }
 
     }
-}
 }

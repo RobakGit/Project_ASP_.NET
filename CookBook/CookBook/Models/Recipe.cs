@@ -4,14 +4,20 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CookBook.Models
 {
-    public class Recipes
+    public class Recipe
     {
-        [Required]
+        [Key]
         public int Id { get; set; }
         [Required]
         public string Name { get; set; }
         public string Description { get; set; }
+        //TODO ForeignKey
+        [Required]
         public int Category { get; set; }
+        //TODO ForeignKey
+        [Required]
+        public int RecipeIngredientId { get; set; }
+        //TODO ForeignKey
         [Required]
         public int OwnerId { get; set; }
         [DisplayFormat(DataFormatString = "{HH:mm}")]
