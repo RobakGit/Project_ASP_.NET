@@ -10,6 +10,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using CookBook.Data;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace CookBook
 {
@@ -29,6 +30,12 @@ namespace CookBook
 
             services.AddDbContext<CookBookContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("CookBookDb")));
+
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(options => {
+                    options.LoginPath = "/login";
+                    options.AccessDeniedPath = "/deniedAccess";
+                });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -48,7 +55,7 @@ namespace CookBook
             app.UseStaticFiles();
 
             app.UseRouting();
-
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
