@@ -13,7 +13,7 @@ namespace CookBook.Models
         public string Description { get; set; }
         //TODO ForeignKey
         [Required]
-        public CategoryCategory { get; set; }
+        public Category Category { get; set; }
 
         //TODO ForeignKey
         [Required]

@@ -24,6 +24,40 @@ namespace CookBook.Data
             {
                 context.Users.Add(user);
             }
+            var catergories = new Category[]
+           {
+            new Category{Name="Starters"},
+            new Category{Name="Main dishes"},
+            new Category{Name="Drinks"},
+
+           };
+            foreach (Category category in catergories)
+            {
+                context.Categories.Add(category);
+            }
+            var ingredients = new Ingredient[]
+           {
+            new Ingredient{Name=""},
+
+
+           };
+            foreach (Ingredient ingredient in ingredients)
+            {
+                context.Ingredients.Add(ingredient);
+            }
+            var measurments = new Measure[]
+           {
+            new Measure{Name="g"},
+            new Measure{Name="kg"},
+            new Measure{Name="L"},
+            new Measure{Name="ml"},
+            new Measure{Name="L"},
+
+           };
+            foreach (Measure measure in measurments)
+            {
+                context.Measures.Add(measure);
+            }
             context.SaveChanges();
         }
     }
