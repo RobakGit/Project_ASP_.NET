@@ -12,11 +12,11 @@ namespace CookBook.Models
         [Key]
         public int Recipe_id { get; set; }
         [Required]
-        public Ingredient IngredientId { get; set; }
+        public Ingredient Ingredient { get; set; }
         [Required]
-        public Measure MeasureId { get; set; }
+        public Measure Measure { get; set; }
         [Required]
-        public int Amount { get; set; }
+        public double Ammount { get; set; }
 
 
     }

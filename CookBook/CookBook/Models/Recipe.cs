@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -17,12 +18,12 @@ namespace CookBook.Models
 
         //TODO ForeignKey
         [Required]
-        public RecipeIngredient RecipeIngredient { get; set; }
+        public List<RecipeIngredient> RecipeIngredients { get; set; }
         //TODO ForeignKey
         [Required]
         public User Owner { get; set; }
-        [DisplayFormat(DataFormatString = "{HH:mm}")]
-        public DateTime CookingTime { get; set; }
+        //[DisplayFormat(DataFormatString = "{HH:mm}")]
+        public TimeSpan CookingTime { get; set; }
 
   
     }

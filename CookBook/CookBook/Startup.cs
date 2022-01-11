@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using CookBook.Data;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using CookBook.Models;
 
 namespace CookBook
 {
@@ -44,6 +45,112 @@ namespace CookBook
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+
+
+                using (var serviceScope = app.ApplicationServices.CreateScope())
+                {
+
+                    var dbContext = serviceScope.ServiceProvider.GetRequiredService<CookBookContext>();
+
+                    dbContext.Database.EnsureCreated();
+
+                    User admin = new(){ Login = "root", Password = "toor", Role = "ADMIN" };
+                    User user = new(){ Login = "user", Password = "resu", Role = "USER" };
+
+                    var users = new User[] { admin, user };
+
+                    Category testCategory = new()
+                    {
+                        Name = "TestCategory"
+                    };
+
+                    Ingredient testIngredient1 = new()
+                    {
+                        Name = "TestIngredient1"
+                    };
+                    Ingredient testIngredient2 = new()
+                    {
+                        Name = "TestIngredient2"
+                    };
+                    Ingredient testIngredient3 = new()
+                    {
+                        Name = "TestIngredient3"
+                    };
+
+                    var ingredients = new Ingredient[] { testIngredient1, testIngredient2, testIngredient3 };
+
+                    Measure testMeasure1 = new() {
+                        Name = "g"
+                    };
+
+                    Measure testMeasure2 = new()
+                    {
+                        Name = "L"
+                    };
+
+                    var measures = new Measure[] { testMeasure1, testMeasure2 };
+
+                    RecipeIngredient testRecipeIngredient1 = new()
+                    {
+                        Ingredient = testIngredient1,
+                        Measure = testMeasure1,
+                        Ammount = 200
+                    };
+                    RecipeIngredient testRecipeIngredient2 = new()
+                    {
+                        Ingredient = testIngredient2,
+                        Measure = testMeasure2,
+                        Ammount = 200
+                    };
+                    RecipeIngredient testRecipeIngredient3 = new()
+                    {
+                        Ingredient = testIngredient3,
+                        Measure = testMeasure2,
+                        Ammount = 200
+                    };
+
+                    List<RecipeIngredient> recipeIngredients = new()
+                    {
+                        testRecipeIngredient1,
+                        testRecipeIngredient2,
+                        testRecipeIngredient3
+                    };
+
+                    Recipe testRecipe = new() {
+                        Name = "TestRecipe",
+                        Category = testCategory,
+                        RecipeIngredients = recipeIngredients,
+                        Owner = user,
+                        CookingTime = new(1, 30, 0)
+                };
+
+                    foreach (User u in users)
+                    {
+                        dbContext.Users.Add(u);
+                    }
+
+
+                    foreach (Ingredient i in ingredients)
+                    {
+                        dbContext.Ingredients.Add(i);
+                    }
+                    
+                    foreach (Measure m in measures)
+                    {
+                        dbContext.Measures.Add(m);
+                    }
+
+                    foreach (RecipeIngredient ri in recipeIngredients)
+                    {
+                        dbContext.RecipeIngredients.Add(ri);
+                    }
+
+                    dbContext.Recipes.Add(testRecipe);
+
+                    dbContext.SaveChanges();
+
+                }
+
             }
             else
             {
