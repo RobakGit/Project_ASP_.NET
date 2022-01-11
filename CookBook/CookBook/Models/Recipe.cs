@@ -13,14 +13,17 @@ namespace CookBook.Models
         public string Description { get; set; }
         //TODO ForeignKey
         [Required]
-        public int Category { get; set; }
+        public CategoryCategory { get; set; }
+
         //TODO ForeignKey
         [Required]
-        public int RecipeIngredientId { get; set; }
+        public RecipeIngredient RecipeIngredient { get; set; }
         //TODO ForeignKey
         [Required]
-        public int OwnerId { get; set; }
+        public User Owner { get; set; }
         [DisplayFormat(DataFormatString = "{HH:mm}")]
         public DateTime CookingTime { get; set; }
+
+  
     }
 }
