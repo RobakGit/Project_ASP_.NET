@@ -1,0 +1,21 @@
+﻿.recipeElement {
+    width: 330px;
+    text-align: center;
+    border-width: 1px;
+    border-style: solid;
+    border-color: black;
+    border-image: initial;
+    margin: 20px;
+}
+
+.recipeElementName {
+    font-size: 40px;
+    padding: 30px;
+}
+
+.recipeElementTime {
+    border-width: 1px;
+    border-style: solid;
+    border-color: black;
+    border-image: initial;
+}
